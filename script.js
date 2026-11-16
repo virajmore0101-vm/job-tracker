@@ -7,4 +7,14 @@ form.addEventListener("submit", function (event) {
     const company = document.querySelector("#company").value;
     console.log(role);
     console.log(company);
+    const date = document.querySelector("#date").value;
+    console.log(date);
+    const status = document.querySelector("#status").value;
+    console.log(status);
+    const notes = document.querySelector("#notes").value;
+    console.log(notes);
+    const item = document.createElement("li");
+item.textContent = company + " - " + role + " - " + date + " - " + status + " - " + notes;
+document.querySelector("#list").appendChild(item);
+form.reset();
 });
