@@ -1,6 +1,14 @@
 console.log("Hello from JavaScript!"); 
 const form = document.querySelector("form");
+let applications = JSON.parse(localStorage.getItem("applications")) || [];
 console.log(form); 
+function showApplication(app) {
+    const item = document.createElement("li");
+    item.textContent = app.company + " - " + app.role + " - " + app.date + " - " + app.status + " - " + app.notes;
+    document.querySelector("#list").appendChild(item);
+}
+
+applications.forEach(showApplication);
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     const role = document.querySelector("#role").value;
@@ -13,8 +21,17 @@ form.addEventListener("submit", function (event) {
     console.log(status);
     const notes = document.querySelector("#notes").value;
     console.log(notes);
-    const item = document.createElement("li");
-item.textContent = company + " - " + role + " - " + date + " - " + status + " - " + notes;
-document.querySelector("#list").appendChild(item);
+    const application = {
+    company: company,
+    role: role,
+    date: date,
+    status: status,
+    notes: notes
+};
+console.log(application);
+applications.push(application);
+localStorage.setItem("applications", JSON.stringify(applications));
+console.log(applications);
+   showApplication(application);
 form.reset();
 });
