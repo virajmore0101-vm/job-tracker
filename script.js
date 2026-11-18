@@ -4,7 +4,19 @@ let applications = JSON.parse(localStorage.getItem("applications")) || [];
 console.log(form); 
 function showApplication(app) {
     const item = document.createElement("li");
-    item.textContent = app.company + " - " + app.role + " - " + app.date + " - " + app.status + " - " + app.notes;
+    item.textContent = app.company + " - " + app.role + " - " + app.date + " - " + app.notes + " ";
+    const statusSelect = document.createElement("select");
+["Applied", "Interviewing", "Offer", "Rejected"].forEach(function (status) {
+    const option = document.createElement("option");
+    option.textContent = status;
+    statusSelect.appendChild(option);
+});
+statusSelect.value = app.status;
+item.appendChild(statusSelect);
+statusSelect.addEventListener("change", function () {
+    app.status = statusSelect.value;
+    localStorage.setItem("applications", JSON.stringify(applications));
+});
     const deleteButton = document.createElement("button");
 deleteButton.textContent = "Delete";
 item.appendChild(deleteButton);
