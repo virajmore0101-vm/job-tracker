@@ -5,6 +5,15 @@ console.log(form);
 function showApplication(app) {
     const item = document.createElement("li");
     item.textContent = app.company + " - " + app.role + " - " + app.date + " - " + app.status + " - " + app.notes;
+    const deleteButton = document.createElement("button");
+deleteButton.textContent = "Delete";
+item.appendChild(deleteButton);
+deleteButton.addEventListener("click", function () {
+    const index = applications.indexOf(app);
+    applications.splice(index, 1);
+    localStorage.setItem("applications", JSON.stringify(applications));
+    item.remove();
+});
     document.querySelector("#list").appendChild(item);
 }
 
