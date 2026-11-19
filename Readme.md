@@ -47,3 +47,8 @@ No installation needed.
 
 ## Author
 Viraj More · [GitHub](https://github.com/virajmore0101-vm)
+
+## Progress
+**Day 7**: add, list, update status, delete, and saving in the browser all working
+
+![Day 7](Screenshots/day-07.png)
