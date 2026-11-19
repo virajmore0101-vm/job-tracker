@@ -56,3 +56,13 @@ console.log(applications);
    showApplication(application);
 form.reset();
 });
+document.querySelector("#search").addEventListener("input", function () {
+    const text = this.value.toLowerCase();
+    document.querySelectorAll("#list li").forEach(function (item) {
+        if (item.textContent.toLowerCase().includes(text)) {
+            item.style.display = "";
+        } else {
+            item.style.display = "none";
+        }
+    });
+});
