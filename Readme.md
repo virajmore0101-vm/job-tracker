@@ -8,10 +8,14 @@ A simple web app to keep track of the jobs you've applied to. Record the company
 - Update an application's status (Applied, Interviewing, Offer, Rejected) with a dropdown
 - Delete applications you no longer need
 - Data is saved in the browser, so it stays after a refresh or closing the tab
+- Search applications by company or role
+- Filter applications by status
+- Works on phones and desktops
 
 ## Built with
 - HTML
 - JavaScript
+-CSS
 - localStorage (browser storage)
 - Git and GitHub
 
@@ -32,6 +36,7 @@ No installation needed.
 ## Project structure
 - `index.html`: the page layout and the form
 - `script.js`: all the logic (adding, showing, updating, deleting, saving)
+- Summary counts, readable dates, and delete confirmation.
 
 ## What I learned
 - How HTML forms work, and the difference between writing code and using it in the browser
@@ -41,8 +46,7 @@ No installation needed.
 - Using Git to save my progress step by step and publish it on GitHub
 
 ## Coming next
-- Search and filter applications
-- Styling with CSS
+- Summary counts, readable dates, and delete confirmation.
 - A live version on GitHub Pages
 
 ## Author
