@@ -3,7 +3,15 @@ let applications = JSON.parse(localStorage.getItem("applications")) || [];
 
 function showApplication(app) {
     const item = document.createElement("li");
-    item.textContent = app.company + " - " + app.role + " - " + app.date + " - " + app.notes + " ";
+    const title = document.createElement("strong");
+title.textContent = app.company + " · " + app.role;
+
+const details = document.createElement("div");
+details.className = "details";
+details.textContent = app.date + (app.notes ? " · " + app.notes : "");
+
+item.appendChild(title);
+item.appendChild(details);
 
     const statusSelect = document.createElement("select");
     ["Applied", "Interviewing", "Offer", "Rejected"].forEach(function (status) {
@@ -16,6 +24,8 @@ function showApplication(app) {
 
     statusSelect.addEventListener("change", function () {
         app.status = statusSelect.value;
+        statusSelect.className = "status " + app.status.toLowerCase();
+        statusSelect.className = "status " + app.status.toLowerCase();
         localStorage.setItem("applications", JSON.stringify(applications));
     });
 
