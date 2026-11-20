@@ -8,7 +8,8 @@ title.textContent = app.company + " · " + app.role;
 
 const details = document.createElement("div");
 details.className = "details";
-details.textContent = app.date + (app.notes ? " · " + app.notes : "");
+const prettyDate = new Date(app.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+details.textContent = prettyDate + (app.notes ? " · " + app.notes : "");
 
 item.appendChild(title);
 item.appendChild(details);
@@ -34,10 +35,12 @@ item.appendChild(details);
     item.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", function () {
+        if (confirm("Are you sure?")) {
         const index = applications.indexOf(app);
         applications.splice(index, 1);
         localStorage.setItem("applications", JSON.stringify(applications));
         item.remove();
+        }
     });
 
     document.querySelector("#list").appendChild(item);
