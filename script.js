@@ -1,7 +1,14 @@
 const form = document.querySelector("form");
 let applications = JSON.parse(localStorage.getItem("applications")) || [];
 function updateSummary() {
-    document.querySelector("#summary").textContent = "Total: " + applications.length;
+    const interviewing = applications.filter(function (a) { return a.status === "Interviewing"; }).length;
+    const offers = applications.filter(function (a) { return a.status === "Offer"; }).length;
+    const rejected = applications.filter(function (a) { return a.status === "Rejected"; }).length;
+    document.querySelector("#summary").textContent =
+        "Total: " + applications.length +
+        " · Interviewing: " + interviewing +
+        " · Offers: " + offers +
+        " · Rejected: " + rejected;
 }
 function showApplication(app) {
     const item = document.createElement("li");
@@ -57,32 +64,10 @@ form.addEventListener("submit", function (event) {
     const date = document.querySelector("#date").value;
     const status = document.querySelector("#status").value;
     const notes = document.querySelector("#notes").value;
-
-    const application = {
-        company: company,
-        role: role,
-        date: date,
-        status: status,
-        notes: notes
-    };
-
+    const application = { company: company, role: role, date: date, status: status, notes: notes };
     applications.push(application);
     localStorage.setItem("applications", JSON.stringify(applications));
     showApplication(application);
     updateSummary();
     form.reset();
 });
-
-function applyFilters() {
-    const text = document.querySelector("#search").value.toLowerCase();
-    const status = document.querySelector("#statusFilter").value;
-    applications.forEach(function (app, i) {
-        const item = document.querySelectorAll("#list li")[i];
-        const matchesText = (app.company + " " + app.role).toLowerCase().includes(text);
-        const matchesStatus = status === "" || app.status === status;
-        item.style.display = matchesText && matchesStatus ? "" : "none";
-    });
-}
-
-document.querySelector("#search").addEventListener("input", applyFilters);
-document.querySelector("#statusFilter").addEventListener("change", applyFilters);
