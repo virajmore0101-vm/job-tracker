@@ -1,6 +1,8 @@
 const form = document.querySelector("form");
 let applications = JSON.parse(localStorage.getItem("applications")) || [];
-
+function updateSummary() {
+    document.querySelector("#summary").textContent = "Total: " + applications.length;
+}
 function showApplication(app) {
     const item = document.createElement("li");
     const title = document.createElement("strong");
@@ -40,14 +42,14 @@ item.appendChild(details);
         applications.splice(index, 1);
         localStorage.setItem("applications", JSON.stringify(applications));
         item.remove();
+        updateSummary();
         }
     });
-
     document.querySelector("#list").appendChild(item);
 }
 
 applications.forEach(showApplication);
-
+updateSummary();
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     const company = document.querySelector("#company").value;
@@ -67,6 +69,7 @@ form.addEventListener("submit", function (event) {
     applications.push(application);
     localStorage.setItem("applications", JSON.stringify(applications));
     showApplication(application);
+    updateSummary();
     form.reset();
 });
 
