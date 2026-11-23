@@ -11,6 +11,9 @@ A simple web app to keep track of the jobs you've applied to. Record the company
 - Search applications by company or role
 - Filter applications by status
 - Works on phones and desktops
+- Summary counts (total, interviewing, offers, rejected) that update live
+- "Are you sure?" confirmation before deleting
+- Readable dates, like 5 June 2006
 
 ## Built with
 - HTML
@@ -46,8 +49,7 @@ No installation needed.
 - Using Git to save my progress step by step and publish it on GitHub
 
 ## Coming next
-- Summary counts, readable dates, and delete confirmation.
-- A live version on GitHub Pages
+- Empty-state message, newest-first sorting, and editing an application
 
 ## Author
 Viraj More · [GitHub](https://github.com/virajmore0101-vm)
