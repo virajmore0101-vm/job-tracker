@@ -9,6 +9,7 @@ function updateSummary() {
         " · Interviewing: " + interviewing +
         " · Offers: " + offers +
         " · Rejected: " + rejected;
+            document.querySelector("#empty").style.display = applications.length === 0 ? "block" : "none";
 }
 function showApplication(app) {
     const item = document.createElement("li");

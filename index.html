@@ -10,13 +10,13 @@
     <h1>My Job Tracker</h1>
                 <form>
             <label for="company">Company</label>
-            <input type="text" id="company">
+            <input type="text" id="company"required>
 
             <label for="role">Role</label>
-            <input type="text" id="role">
+            <input type="text" id="role"required>
 
             <label for="date">Application date</label>
-            <input type="date" id="date">
+            <input type="date" id="date"required>
             <label for="status">Status</label>
 <select id="status">
     <option>Applied</option>
@@ -42,6 +42,7 @@
     <option>Rejected</option>
 </select>
 <ul id="list"></ul>
+<p id="empty">No applications yet. Add your first one above.</p>
         <script src="script.js"></script>
         </body>
 </html> 
