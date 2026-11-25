@@ -66,9 +66,10 @@ form.addEventListener("submit", function (event) {
     const status = document.querySelector("#status").value;
     const notes = document.querySelector("#notes").value;
     const application = { company: company, role: role, date: date, status: status, notes: notes };
-    applications.push(application);
+    applications.unshift(application);
     localStorage.setItem("applications", JSON.stringify(applications));
-    showApplication(application);
+    document.querySelector("#list").innerHTML = "";
+    applications.forEach(showApplication);
     updateSummary();
     form.reset();
 });
