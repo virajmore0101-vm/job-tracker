@@ -103,3 +103,19 @@ form.addEventListener("submit", function (event) {
     updateSummary();
     form.reset();
 });
+const themeButton = document.querySelector("#theme");
+
+function setThemeLabel() {
+    themeButton.textContent = document.body.classList.contains("dark") ? "Light mode" : "Dark mode";
+}
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
+setThemeLabel();
+
+themeButton.addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    setThemeLabel();
+});
