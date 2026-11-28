@@ -1,5 +1,6 @@
 const form = document.querySelector("form");
 let applications = JSON.parse(localStorage.getItem("applications")) || [];
+let editing = null;
 function updateSummary() {
     const interviewing = applications.filter(function (a) { return a.status === "Interviewing"; }).length;
     const offers = applications.filter(function (a) { return a.status === "Offer"; }).length;
@@ -53,6 +54,20 @@ item.appendChild(details);
         updateSummary();
         }
     });
+    const editButton = document.createElement("button");
+editButton.textContent = "Edit";
+editButton.className = "edit";
+item.appendChild(editButton);
+editButton.addEventListener("click", function () {
+    document.querySelector("#company").value = app.company;
+    document.querySelector("#role").value = app.role;
+    document.querySelector("#date").value = app.date;
+    document.querySelector("#status").value = app.status;
+    document.querySelector("#notes").value = app.notes;
+    editing = app;
+    document.querySelector("form button").textContent = "Save changes";
+    window.scrollTo(0, 0);
+});
     document.querySelector("#list").appendChild(item);
 }
 
@@ -65,6 +80,21 @@ form.addEventListener("submit", function (event) {
     const date = document.querySelector("#date").value;
     const status = document.querySelector("#status").value;
     const notes = document.querySelector("#notes").value;
+        if (editing) {
+        editing.company = company;
+        editing.role = role;
+        editing.date = date;
+        editing.status = status;
+        editing.notes = notes;
+        editing = null;
+        localStorage.setItem("applications", JSON.stringify(applications));
+        document.querySelector("#list").innerHTML = "";
+        applications.forEach(showApplication);
+        updateSummary();
+        form.reset();
+        document.querySelector("form button").textContent = "Add application";
+        return;
+    }
     const application = { company: company, role: role, date: date, status: status, notes: notes };
     applications.unshift(application);
     localStorage.setItem("applications", JSON.stringify(applications));
